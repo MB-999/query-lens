@@ -43,11 +43,7 @@ describe('QueryLens Chrome Tests', () => {
     };
 
     // Create QueryLens instance without auto-init
-    queryLens = Object.create(QueryLens.prototype);
-    queryLens.browser = mockBrowserAPI;
-    queryLens.originalUrl = '';
-    queryLens.currentUrl = '';
-    queryLens.params = new URLSearchParams();
+    queryLens = new QueryLens(mockBrowserAPI, { autoInit: false });
   });
 
   afterEach(() => {

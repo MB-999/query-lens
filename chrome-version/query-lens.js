@@ -1,15 +1,17 @@
 class QueryLens {
-  constructor(browserAPI) {
+  constructor(browserAPI, options = {}) {
     this.browser = browserAPI;
     this.originalUrl = '';
     this.currentUrl = '';
     this.params = new URLSearchParams();
-    this.init().catch((error) => {
-      console.error('QueryLens failed to initialise', error);
-      this.showToast('Unable to load the current tab URL.');
-      const applyButton = document.getElementById('apply-changes-btn');
-      if (applyButton) applyButton.disabled = true;
-    });
+    if (options.autoInit !== false) {
+      this.init().catch((error) => {
+        console.error('QueryLens failed to initialise', error);
+        this.showToast('Unable to load the current tab URL.');
+        const applyButton = document.getElementById('apply-changes-btn');
+        if (applyButton) applyButton.disabled = true;
+      });
+    }
   }
 
   async init() {
