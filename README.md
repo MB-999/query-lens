@@ -88,7 +88,7 @@ Each version contains its own README with specific development instructions:
 
 ## Sponsor My Opensource Work
 
-https://github.com/sponsors/MB-999
+[GitHub Sponsors](https://github.com/sponsors/MB-999)
 
 ## Contributing
 

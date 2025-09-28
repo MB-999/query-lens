@@ -103,10 +103,15 @@ class QueryLens {
     });
 
     document.getElementById('copy-url-btn').addEventListener('click', async () => {
+      if (!navigator.clipboard) {
+        this.showToast('Clipboard not available');
+        return;
+      }
       try {
         await navigator.clipboard.writeText(this.buildUrl());
         this.showToast('URL copied to clipboard!');
-      } catch {
+      } catch (error) {
+        console.error('Clipboard operation failed:', error);
         this.showToast('Failed to copy URL');
       }
     });
@@ -241,10 +246,15 @@ class QueryLens {
     valueInput.addEventListener('input', () => this.updatePreview());
     copyBtn.addEventListener('click', async (e) => {
       const value = e.target.closest('.param-row').querySelector('.param-value').value;
+      if (!navigator.clipboard) {
+        this.showToast('Clipboard not available');
+        return;
+      }
       try {
         await navigator.clipboard.writeText(value);
         this.showToast('Value copied!');
-      } catch {
+      } catch (error) {
+        console.error('Clipboard operation failed:', error);
         this.showToast('Failed to copy value');
       }
     });
