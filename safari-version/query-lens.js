@@ -178,7 +178,7 @@ class QueryLens {
       const dragHandle = document.createElement('div');
       dragHandle.className = 'drag-handle';
       dragHandle.title = 'Drag to reorder';
-      dragHandle.textContent = '⋮⋮';
+      dragHandle.textContent = '::';
       paramRow.appendChild(dragHandle);
     }
     
