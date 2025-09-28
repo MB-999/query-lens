@@ -4,7 +4,12 @@ class QueryLens {
     this.originalUrl = '';
     this.currentUrl = '';
     this.params = new URLSearchParams();
-    this.init();
+    this.init().catch((error) => {
+      console.error('QueryLens failed to initialise', error);
+      this.showToast('Unable to load the current tab URL.');
+      const applyButton = document.getElementById('apply-changes-btn');
+      if (applyButton) applyButton.disabled = true;
+    });
   }
 
   async init() {
