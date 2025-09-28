@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "QueryLens",
+  "version": "1.0.0",
+  "description": "View and manipulate URL query parameters for debugging",
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "QueryLens"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "devtools_page": "devtools.html"
+}
