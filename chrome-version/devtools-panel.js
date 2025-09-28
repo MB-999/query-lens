@@ -25,7 +25,7 @@ class DevToolsQueryLens extends QueryLens {
           if (!result || (exceptionInfo && (exceptionInfo.isError || exceptionInfo.isException))) {
             this.showToast('Unable to read the inspected URL');
             document.getElementById('apply-changes-btn').disabled = true;
-            return;
+            return resolve();
           }
           this.originalUrl = result;
           this.currentUrl = result;

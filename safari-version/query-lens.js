@@ -264,9 +264,9 @@ class QueryLens {
     const entries = [];
 
     document.querySelectorAll('.param-item').forEach(item => {
-      const key = item.querySelector('.param-key').value.trim();
-      const value = item.querySelector('.param-value').value.trim();
-      if (key) entries.push([key, value]);
+      const key = item.querySelector('.param-key').value;
+      const value = item.querySelector('.param-value').value;
+      if (key.trim()) entries.push([key, value]);
     });
 
     url.search = new URLSearchParams(entries).toString();
@@ -288,9 +288,9 @@ class QueryLens {
   syncDomToParams() {
     const entries = [];
     document.querySelectorAll('.param-item').forEach(item => {
-      const key = item.querySelector('.param-key').value.trim();
-      const value = item.querySelector('.param-value').value.trim();
-      entries.push([key, value]);
+      const key = item.querySelector('.param-key').value;
+      const value = item.querySelector('.param-value').value;
+      if (key.trim()) entries.push([key, value]);
     });
     this.params = new URLSearchParams(entries);
   }
