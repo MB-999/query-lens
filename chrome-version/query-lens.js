@@ -46,12 +46,15 @@ class QueryLens {
     dynamicUrlDiv.textContent = '';
     dynamicUrlDiv.appendChild(document.createTextNode(baseUrl + '?'));
     
+    const keyCounters = new Map();
+    
     paramEntries.forEach(([key, value], index) => {
-      const originalValue = originalParams.get(key);
-      const originalKey = originalParams.has(key);
+      const originalValues = originalParams.getAll(key);
+      const keyIndex = keyCounters.get(key) || 0;
+      keyCounters.set(key, keyIndex + 1);
       
-      const keyChanged = !originalKey;
-      const valueChanged = originalValue !== value;
+      const keyChanged = originalValues.length <= keyIndex;
+      const valueChanged = !keyChanged && originalValues[keyIndex] !== value;
       
       if (keyChanged) {
         const keySpan = document.createElement('span');
