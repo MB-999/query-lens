@@ -18,7 +18,6 @@ class QueryLens {
     await this.loadCurrentUrl();
     this.setupEventListeners();
     this.renderParams();
-    this.updateDynamicUrl();
   }
 
   async loadCurrentUrl() {
@@ -27,12 +26,6 @@ class QueryLens {
     this.currentUrl = tabs[0].url;
     this.params = new URLSearchParams(new URL(this.currentUrl).search);
     this.updateDynamicUrl();
-  }
-
-  escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
   }
 
   updateDynamicUrl() {
@@ -137,7 +130,6 @@ class QueryLens {
     paramsList.addEventListener('dragstart', (e) => {
       if (e.target.closest('.param-item')) {
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', e.target.closest('.param-item').outerHTML);
         e.target.closest('.param-item').classList.add('dragging');
       }
     });
@@ -211,7 +203,6 @@ class QueryLens {
     keyInput.type = 'text';
     keyInput.className = 'param-key';
     keyInput.value = key;
-    keyInput.setAttribute('data-original', key);
     keyInput.placeholder = 'Key';
     
     const valueInput = document.createElement('input');
@@ -222,14 +213,11 @@ class QueryLens {
     
     const copyBtn = document.createElement('button');
     copyBtn.className = 'copy-btn';
-    copyBtn.setAttribute('data-key', key);
-    copyBtn.setAttribute('data-value', value);
     copyBtn.title = 'Copy value';
     copyBtn.textContent = 'Copy';
     
     const removeBtn = document.createElement('button');
     removeBtn.className = 'remove-btn';
-    removeBtn.setAttribute('data-key', key);
     removeBtn.title = 'Remove parameter';
     removeBtn.textContent = 'Delete';
     
@@ -318,6 +306,9 @@ class QueryLens {
     const tabs = await this.browser.tabs.query({ active: true, currentWindow: true });
     await this.browser.tabs.update(tabs[0].id, { url: newUrl });
     this.originalUrl = newUrl;
+    this.currentUrl = newUrl;
+
+
     window.close();
   }
 }
