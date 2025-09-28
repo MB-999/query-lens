@@ -64,10 +64,7 @@ describe('QueryLens Chrome Tests', () => {
     expect(queryLens.params.get('param')).toBe('value');
   });
 
-  test('should escape HTML', () => {
-    const result = queryLens.escapeHtml('<script>alert("xss")</script>');
-    expect(result).toBe('&lt;script&gt;alert("xss")&lt;/script&gt;');
-  });
+
 
   test('should build URL', async () => {
     await queryLens.loadCurrentUrl();

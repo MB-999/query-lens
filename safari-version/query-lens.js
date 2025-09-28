@@ -21,8 +21,8 @@ class QueryLens {
 
   async loadCurrentUrl() {
     const tabs = await this.browser.tabs.query({ active: true, currentWindow: true });
-    this.originalUrl = tabs[0].url;
-    this.currentUrl = tabs[0].url;
+    this.originalUrl = tabs[0]?.url ?? '';
+    this.currentUrl = tabs[0]?.url ?? '';
     this.params = new URLSearchParams(new URL(this.currentUrl).search);
     this.updateDynamicUrl();
   }
@@ -57,7 +57,7 @@ class QueryLens {
     
     paramEntries.forEach(([key, value], index) => {
       const originalValues = originalParams.getAll(key);
-      const keyIndex = keyCounters.get(key) || 0;
+      const keyIndex = keyCounters.get(key) ?? 0;
       keyCounters.set(key, keyIndex + 1);
       
       const keyChanged = originalValues.length <= keyIndex;
@@ -161,9 +161,9 @@ class QueryLens {
           const rect = element.getBoundingClientRect();
           const midY = rect.top + rect.height / 2;
           if (e.clientY < midY) {
-            element.parentNode.insertBefore(dragging, element);
+            element.parentNode?.insertBefore(dragging, element);
           } else {
-            element.parentNode.insertBefore(dragging, element.nextSibling);
+            element.parentNode?.insertBefore(dragging, element.nextSibling);
           }
           this.updatePreview();
         }
@@ -245,7 +245,7 @@ class QueryLens {
     keyInput.addEventListener('input', () => this.updatePreview());
     valueInput.addEventListener('input', () => this.updatePreview());
     copyBtn.addEventListener('click', async (e) => {
-      const value = e.target.closest('.param-row').querySelector('.param-value').value;
+      const value = e.target.closest('.param-row')?.querySelector('.param-value')?.value ?? '';
       if (!navigator.clipboard) {
         this.showToast('Clipboard not available');
         return;
@@ -259,7 +259,7 @@ class QueryLens {
       }
     });
     removeBtn.addEventListener('click', (e) => {
-      e.target.closest('.param-item').remove();
+      e.target.closest('.param-item')?.remove();
       this.syncDomToParams();
       this.renderParams();
       this.updatePreview();
@@ -280,8 +280,8 @@ class QueryLens {
     const entries = [];
 
     document.querySelectorAll('.param-item').forEach(item => {
-      const key = item.querySelector('.param-key').value;
-      const value = item.querySelector('.param-value').value;
+      const key = item.querySelector('.param-key')?.value ?? '';
+      const value = item.querySelector('.param-value')?.value ?? '';
       if (key.trim()) entries.push([key, value]);
     });
 
@@ -297,15 +297,15 @@ class QueryLens {
     setTimeout(() => {
       const inputs = document.querySelectorAll('.param-key');
       const lastInput = inputs[inputs.length - 1];
-      if (lastInput) lastInput.focus();
+      lastInput?.focus();
     }, 0);
   }
 
   syncDomToParams() {
     const entries = [];
     document.querySelectorAll('.param-item').forEach(item => {
-      const key = item.querySelector('.param-key').value;
-      const value = item.querySelector('.param-value').value;
+      const key = item.querySelector('.param-key')?.value ?? '';
+      const value = item.querySelector('.param-value')?.value ?? '';
       if (key.trim()) entries.push([key, value]);
     });
     this.params = new URLSearchParams(entries);
@@ -322,7 +322,7 @@ class QueryLens {
   async applyChanges() {
     const newUrl = this.buildUrl();
     const tabs = await this.browser.tabs.query({ active: true, currentWindow: true });
-    await this.browser.tabs.update(tabs[0].id, { url: newUrl });
+    await this.browser.tabs.update(tabs[0]?.id, { url: newUrl });
     this.originalUrl = newUrl;
     window.close();
   }

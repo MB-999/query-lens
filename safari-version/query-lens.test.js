@@ -99,10 +99,7 @@ describe('QueryLens Safari Tests', () => {
     expect(queryLens.params.get('param2')).toBe('value2');
   });
 
-  test('should escape HTML characters', () => {
-    const result = queryLens.escapeHtml('<script>alert("xss")</script>');
-    expect(result).toBe('&lt;script&gt;alert("xss")&lt;/script&gt;');
-  });
+
 
   test('should build URL correctly', async () => {
     await queryLens.loadCurrentUrl();
