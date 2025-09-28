@@ -100,4 +100,4 @@ Each version contains its own README with specific development instructions:
 
 ## License
 
-MIT License - see individual version directories for specific license files.
+MIT License
