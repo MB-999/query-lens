@@ -86,6 +86,10 @@ Each version contains its own README with specific development instructions:
 | Manifest Version       | v3         | v2          |
 | API                    | `chrome.*` | `browser.*` |
 
+## Sponsor My Opensource Work
+
+<iframe src="https://github.com/sponsors/MB-999/card" title="Sponsor MB-999" height="225" width="600" style="border: 0;"></iframe>
+
 ## Contributing
 
 1. Fork the repository
