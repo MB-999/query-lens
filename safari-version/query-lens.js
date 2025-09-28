@@ -270,7 +270,7 @@ class QueryLens {
 
   addNewParam() {
     this.syncDomToParams();
-    this.params.set('', '');
+    this.params.append('', '');
     this.renderParams();
     this.updatePreview();
     setTimeout(() => {
@@ -285,7 +285,7 @@ class QueryLens {
     document.querySelectorAll('.param-item').forEach(item => {
       const key = item.querySelector('.param-key').value.trim();
       const value = item.querySelector('.param-value').value.trim();
-      if (key) entries.push([key, value]);
+      entries.push([key, value]);
     });
     this.params = new URLSearchParams(entries);
   }

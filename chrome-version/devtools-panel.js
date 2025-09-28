@@ -21,7 +21,12 @@ class DevToolsQueryLens extends QueryLens {
     return new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(
         'window.location.href',
-        (result) => {
+        (result, exceptionInfo) => {
+          if (!result || (exceptionInfo && (exceptionInfo.isError || exceptionInfo.isException))) {
+            this.showToast('Unable to read the inspected URL');
+            document.getElementById('apply-changes-btn').disabled = true;
+            return;
+          }
           this.originalUrl = result;
           this.currentUrl = result;
           this.params = new URLSearchParams(new URL(this.currentUrl).search);

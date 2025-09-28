@@ -13,7 +13,6 @@
 
 - No DevTools panel support
 - Limited drag-and-drop functionality
-- Manifest v2 format required
 
 ### Technical Notes
 

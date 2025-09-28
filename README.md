@@ -16,7 +16,7 @@ The extension is privacy-focused - it only manipulates URL query strings locally
 
 ## Project Structure
 
-```
+```text
 query-lens/
 ├── chrome-version/          # Chrome extension implementation
 │   ├── manifest.json        # Chrome extension manifest (v3)
