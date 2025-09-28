@@ -18,14 +18,7 @@ class DevToolsQueryLens extends QueryLens {
       );
     });
   }
-
-  setupEventListeners() {
-    super.setupEventListeners();
-    document.getElementById('refresh-btn').addEventListener('click', () => {
-      this.loadCurrentUrl();
-    });
-  }
-
+  
   async applyChanges() {
     const newUrl = this.buildUrl();
     chrome.devtools.inspectedWindow.eval(
