@@ -66,7 +66,7 @@ class DevToolsQueryLens extends QueryLens {
       this.addNewParam();
     });
 
-    if (this.browser === chrome) {
+    if (typeof chrome !== 'undefined' && this.browser === chrome) {
       this.setupDragAndDrop();
     }
   }

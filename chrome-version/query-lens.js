@@ -106,7 +106,7 @@ class QueryLens {
     });
 
     // Chrome-specific drag and drop functionality
-    if (this.browser === chrome) {
+    if (typeof chrome !== 'undefined' && this.browser === chrome) {
       this.setupDragAndDrop();
     }
   }
@@ -170,7 +170,7 @@ class QueryLens {
     const div = document.createElement('div');
     div.className = 'param-item';
     
-    if (this.browser === chrome) {
+    if (typeof chrome !== 'undefined' && this.browser === chrome) {
       div.draggable = true;
     }
     
@@ -178,7 +178,7 @@ class QueryLens {
     paramRow.className = 'param-row';
     
     // Add drag handle only for Chrome
-    if (this.browser === chrome) {
+    if (typeof chrome !== 'undefined' && this.browser === chrome) {
       const dragHandle = document.createElement('div');
       dragHandle.className = 'drag-handle';
       dragHandle.title = 'Drag to reorder';
