@@ -60,7 +60,7 @@ Each version contains its own README with specific development instructions:
 
 1. Open Safari and go to Safari > Preferences > Extensions
 2. Enable "Allow Unsigned Extensions" (for development)
-3. Click "+" and select the `safari-version` directory
+3. Click "Add Temporary Extension" and select the `safari-version` directory
 4. Enable the QueryLens extension
 
 ## Usage
@@ -88,7 +88,7 @@ Each version contains its own README with specific development instructions:
 
 ## Sponsor My Opensource Work
 
-<iframe src="https://github.com/sponsors/MB-999/card" title="Sponsor MB-999" height="225" width="600" style="border: 0;"></iframe>
+https://github.com/sponsors/MB-999
 
 ## Contributing
 
