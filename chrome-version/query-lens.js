@@ -248,15 +248,15 @@ class QueryLens {
 
   buildUrl() {
     const url = new URL(this.currentUrl);
-    const newParams = new URLSearchParams();
-    
+    const entries = [];
+
     document.querySelectorAll('.param-item').forEach(item => {
       const key = item.querySelector('.param-key').value.trim();
       const value = item.querySelector('.param-value').value.trim();
-      if (key) newParams.set(key, value);
+      if (key) entries.push([key, value]);
     });
 
-    url.search = newParams.toString();
+    url.search = new URLSearchParams(entries).toString();
     return url.toString();
   }
 
@@ -273,12 +273,13 @@ class QueryLens {
   }
 
   syncDomToParams() {
-    this.params = new URLSearchParams();
+    const entries = [];
     document.querySelectorAll('.param-item').forEach(item => {
       const key = item.querySelector('.param-key').value.trim();
       const value = item.querySelector('.param-value').value.trim();
-      if (key) this.params.set(key, value);
+      if (key) entries.push([key, value]);
     });
+    this.params = new URLSearchParams(entries);
   }
 
   showToast(message) {
