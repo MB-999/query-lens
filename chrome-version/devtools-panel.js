@@ -90,7 +90,7 @@ class DevToolsQueryLens extends QueryLens {
     const newCopyBtn = div.querySelector('.copy-btn');
     
     newCopyBtn.addEventListener('click', async (e) => {
-      const value = e.target.closest('.param-row').querySelector('.param-value').value;
+      const value = e.target.closest('.param-row')?.querySelector('.param-value')?.value ?? '';
       const success = await this.copyToClipboard(value);
       this.showToast(success ? 'Value copied!' : 'Failed to copy value');
     });
