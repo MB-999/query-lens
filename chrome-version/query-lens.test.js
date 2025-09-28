@@ -93,8 +93,11 @@ describe('QueryLens Chrome Tests', () => {
   test('should copy URL to clipboard', async () => {
     await queryLens.loadCurrentUrl();
     queryLens.renderParams();
+    queryLens.setupEventListeners();
     
-    await navigator.clipboard.writeText(queryLens.buildUrl());
+    const copyButton = document.querySelector('#copy-url-btn');
+    copyButton.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
     
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('https://example.com/test?param=value');
   });
