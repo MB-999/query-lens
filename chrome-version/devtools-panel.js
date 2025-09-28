@@ -63,8 +63,13 @@ class DevToolsQueryLens extends QueryLens {
       this.showToast(success ? 'URL copied to clipboard!' : 'Failed to copy URL');
     });
 
-    document.getElementById('apply-changes-btn').addEventListener('click', () => {
-      this.applyChanges();
+    document.getElementById('apply-changes-btn').addEventListener('click', async () => {
+      try {
+        await this.applyChanges();
+      } catch (error) {
+        console.error('Failed to apply changes:', error);
+        this.showToast('Failed to apply changes. Please try again.');
+      }
     });
 
     document.getElementById('add-param-btn').addEventListener('click', () => {
