@@ -217,12 +217,13 @@ class QueryLens {
     keyInput.addEventListener('input', () => this.updatePreview());
     valueInput.addEventListener('input', () => this.updatePreview());
     copyBtn.addEventListener('click', (e) => {
-      const value = e.target.dataset.value;
+      const value = e.target.closest('.param-row').querySelector('.param-value').value;
       navigator.clipboard.writeText(value);
       this.showToast('Value copied!');
     });
     removeBtn.addEventListener('click', (e) => {
-      this.params.delete(e.target.dataset.key);
+      e.target.closest('.param-item').remove();
+      this.syncDomToParams();
       this.renderParams();
       this.updatePreview();
     });
