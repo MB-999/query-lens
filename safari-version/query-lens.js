@@ -172,7 +172,7 @@ class QueryLens {
     
     paramsList.innerHTML = '';
     
-    if (this.params.size === 0) {
+    if (this.params.keys().next().done) {
       noParams.classList.remove('hidden');
       return;
     }
