@@ -40,6 +40,8 @@ class QueryLens {
     const url = new URL(dynamicUrl);
     const dynamicUrlDiv = document.getElementById('dynamic-url');
     
+    if (!dynamicUrlDiv) return;
+    
     if (!url.search) {
       dynamicUrlDiv.textContent = dynamicUrl;
       return;
@@ -87,6 +89,10 @@ class QueryLens {
         dynamicUrlDiv.appendChild(document.createTextNode('&'));
       }
     });
+    
+    if (url.hash) {
+      dynamicUrlDiv.appendChild(document.createTextNode(url.hash));
+    }
   }
 
   setupEventListeners() {
