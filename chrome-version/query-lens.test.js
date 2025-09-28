@@ -1,11 +1,5 @@
 const { JSDOM } = require('jsdom');
-const fs = require('fs');
-const path = require('path');
-
-// Load the actual QueryLens implementation
-const queryLensCode = fs.readFileSync(path.join(__dirname, 'query-lens.js'), 'utf8');
-global.QueryLens = eval(`(function() { ${queryLensCode}; return QueryLens; })()`);
-const QueryLens = global.QueryLens;
+const QueryLens = require('./query-lens');
 
 describe('QueryLens Chrome Tests', () => {
   let mockBrowserAPI;
