@@ -305,13 +305,15 @@ class QueryLens {
         .closest(".param-row")
         ?.querySelectorAll(".param-input") as NodeListOf<HTMLInputElement>;
       const value = inputs[1]?.value ?? "";
-      const success = await this.copyToClipboard(value);
-      if (success) {
-        this.showToast("Value copied!");
-      } else if (navigator.clipboard) {
-        this.showToast("Failed to copy value", "error");
-      } else {
+      if (!navigator.clipboard) {
         this.showToast("Clipboard not available", "error");
+      } else {
+        const success = await this.copyToClipboard(value);
+        if (success) {
+          this.showToast("Value copied!");
+        } else {
+          this.showToast("Failed to copy value", "error");
+        }
       }
     });
     removeBtn.addEventListener("click", (e) => {

@@ -71,6 +71,9 @@ class DevToolsQueryLens extends QueryLens {
             // DevTools context blocks Clipboard API, use execCommand
             const textarea = document.createElement("textarea");
             textarea.value = text;
+            // Textarea could briefly appear on screen, prevent causing a visual flicker.
+            textarea.style.position = "absolute";
+            textarea.style.left = "-9999px";
             document.body.appendChild(textarea);
             textarea.select();
             const success = document.execCommand("copy");
@@ -132,6 +135,7 @@ class DevToolsQueryLens extends QueryLens {
             }
             else {
                 this.originalUrl = newUrl;
+                this.currentUrl = newUrl;
                 this.showToast("Changes applied!");
                 document.getElementById("apply-changes-btn").disabled = true;
             }

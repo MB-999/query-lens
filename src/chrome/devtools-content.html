@@ -13,27 +13,28 @@
     <header class="header">
       <h1>QueryLens</h1>
       <div class="buttons">
-        <button id="reset-btn" class="btn">Reset</button>
-        <button id="copy-url-btn" class="btn">Copy URL</button>
-        <button id="apply-changes-btn" class="btn" disabled>Apply Changes</button>
+        <button id="reset-btn" class="btn" aria-label="Reset to original URL" title="Reset to original URL">Reset</button>
+        <button id="copy-url-btn" class="btn" aria-label="Copy modified URL to clipboard" title="Copy modified URL to clipboard">Copy URL</button>
+        <button id="apply-changes-btn" class="btn" aria-label="Navigate to modified URL" title="Navigate to modified URL" disabled>Apply Changes</button>
       </div>
     </header>
     
-    <section class="url-display">
-      <div id="dynamic-url"></div>
+    <section class="url-display" aria-labelledby="url-label">
+      <h2 id="url-label" class="sr-only">Current URL</h2>
+      <div id="dynamic-url" aria-live="polite" aria-label="Dynamic URL preview"></div>
     </section>
     
-    <section class="params-section">
+    <section class="params-section" aria-labelledby="params-heading">
       <div class="params-header">
-        <h2>Query Parameters</h2>
-        <button id="add-param-btn" class="btn">Add Parameter</button>
+        <h2 id="params-heading">Query Parameters</h2>
+        <button id="add-param-btn" class="btn" aria-label="Add new query parameter" title="Add new query parameter">Add Parameter</button>
       </div>
       
-      <div id="no-params" class="no-params hidden">
+      <div id="no-params" class="no-params hidden" role="status">
         No query parameters found
       </div>
       
-      <div id="params-list" class="params-list" role="list"></div>
+      <div id="params-list" class="params-list" role="list" aria-label="Query parameter list"></div>
     </section>
 
   </main>

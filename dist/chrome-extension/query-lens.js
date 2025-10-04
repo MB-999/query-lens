@@ -254,15 +254,17 @@ class QueryLens {
             const inputs = (_a = target
                 .closest(".param-row")) === null || _a === void 0 ? void 0 : _a.querySelectorAll(".param-input");
             const value = (_c = (_b = inputs[1]) === null || _b === void 0 ? void 0 : _b.value) !== null && _c !== void 0 ? _c : "";
-            const success = await this.copyToClipboard(value);
-            if (success) {
-                this.showToast("Value copied!");
-            }
-            else if (navigator.clipboard) {
-                this.showToast("Failed to copy value", "error");
+            if (!navigator.clipboard) {
+                this.showToast("Clipboard not available", "error");
             }
             else {
-                this.showToast("Clipboard not available", "error");
+                const success = await this.copyToClipboard(value);
+                if (success) {
+                    this.showToast("Value copied!");
+                }
+                else {
+                    this.showToast("Failed to copy value", "error");
+                }
             }
         });
         removeBtn.addEventListener("click", (e) => {
