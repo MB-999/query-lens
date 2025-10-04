@@ -1,0 +1,200 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  background: #f9f9f9;
+}
+
+.container {
+  padding: 16px;
+  max-width: 800px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.url-display {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+  word-break: break-all;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.param-changed {
+  background: #fef3c7;
+  padding: 2px 4px;
+  border-radius: 3px;
+  border: 1px solid #f59e0b;
+}
+
+.params-section {
+  background: white;
+  border-radius: 6px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.params-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.params-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.param-item {
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 12px;
+  background: #fafafa;
+  transition: all 0.2s;
+}
+
+.param-item:hover {
+  border-color: #d1d5db;
+  background: white;
+}
+
+.param-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.drag-handle {
+  cursor: grab;
+  color: #9ca3af;
+  font-weight: bold;
+  user-select: none;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.drag-handle:hover {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.param-key, .param-value {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: 'SF Mono', Monaco, monospace;
+}
+
+.param-key:focus, .param-value:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.copy-btn, .remove-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.copy-btn {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.copy-btn:hover {
+  background: #e5e7eb;
+}
+
+.remove-btn {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.remove-btn:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.no-params {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  padding: 40px 20px;
+  background: #f9fafb;
+  border-radius: 6px;
+  border: 2px dashed #e5e7eb;
+}
+
+.hidden {
+  display: none;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #10b981;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
