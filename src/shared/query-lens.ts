@@ -23,7 +23,7 @@ class QueryLens {
     if (options.autoInit !== false) {
       this.init().catch((error) => {
         console.error("QueryLens failed to initialise", error);
-        this.showToast("Unable to load the current tab URL.");
+        this.showToast("Unable to load the current tab URL.", 'error');
         const applyButton = document.getElementById(
           "apply-changes-btn"
         ) as HTMLButtonElement;
@@ -146,7 +146,7 @@ class QueryLens {
       .getElementById("copy-url-btn")
       ?.addEventListener("click", async () => {
         if (!navigator.clipboard) {
-          this.showToast("Clipboard not available");
+          this.showToast("Clipboard not available", 'error');
           return;
         }
         try {
@@ -154,7 +154,7 @@ class QueryLens {
           this.showToast("URL copied to clipboard!");
         } catch (error) {
           console.error("Clipboard operation failed:", error);
-          this.showToast("Failed to copy URL");
+          this.showToast("Failed to copy URL", 'error');
         }
       });
 
@@ -165,7 +165,7 @@ class QueryLens {
           await this.applyChanges();
         } catch (error) {
           console.error("Failed to apply changes:", error);
-          this.showToast("Failed to apply changes. Please try again.");
+          this.showToast("Failed to apply changes. Please try again.", 'error');
         }
       });
 
@@ -301,7 +301,7 @@ class QueryLens {
         ?.querySelectorAll(".param-input") as NodeListOf<HTMLInputElement>;
       const value = inputs[1]?.value ?? "";
       if (!navigator.clipboard) {
-        this.showToast("Clipboard not available");
+        this.showToast("Clipboard not available", 'error');
         return;
       }
       try {
@@ -309,7 +309,7 @@ class QueryLens {
         this.showToast("Value copied!");
       } catch (error) {
         console.error("Clipboard operation failed:", error);
-        this.showToast("Failed to copy value");
+        this.showToast("Failed to copy value", 'error');
       }
     });
     removeBtn.addEventListener("click", (e) => {
@@ -377,9 +377,9 @@ class QueryLens {
     this.params = new URLSearchParams(entries);
   }
 
-  protected showToast(message: string): void {
+  protected showToast(message: string, variant: 'success' | 'error' = 'success'): void {
     const toast = document.createElement("div");
-    toast.className = "toast";
+    toast.className = `toast toast-${variant}`;
     toast.setAttribute("role", "status");
     toast.setAttribute("aria-live", "polite");
     toast.textContent = message;

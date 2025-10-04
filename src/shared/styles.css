@@ -216,7 +216,6 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #28a745;
   color: white;
   padding: 6px 16px;
   font-size: 11px;
@@ -229,6 +228,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.toast-success {
+  background: #28a745;
+}
+
+.toast-error {
+  background: #dc3545;
 }
 
 .toast.show {
