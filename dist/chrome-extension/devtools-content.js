@@ -67,22 +67,26 @@ class DevToolsQueryLens extends QueryLens {
         });
     }
     async copyToClipboard(text) {
+        let textarea = null;
         try {
             // DevTools context blocks Clipboard API, use execCommand
-            const textarea = document.createElement("textarea");
+            textarea = document.createElement("textarea");
             textarea.value = text;
             // Textarea could briefly appear on screen, prevent causing a visual flicker.
             textarea.style.position = "absolute";
             textarea.style.left = "-9999px";
             document.body.appendChild(textarea);
             textarea.select();
-            const success = document.execCommand("copy");
-            document.body.removeChild(textarea);
-            return success;
+            return document.execCommand("copy");
         }
         catch (error) {
             console.error("Clipboard operation failed:", error);
             return false;
+        }
+        finally {
+            if (textarea === null || textarea === void 0 ? void 0 : textarea.parentNode) {
+                textarea.parentNode.removeChild(textarea);
+            }
         }
     }
     setupEventListeners() {

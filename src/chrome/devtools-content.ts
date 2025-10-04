@@ -77,29 +77,25 @@ class DevToolsQueryLens extends QueryLens {
   }
 
   protected async copyToClipboard(text: string): Promise<boolean> {
+    let textarea: HTMLTextAreaElement | null = null;
     try {
       // DevTools context blocks Clipboard API, use execCommand
-protected async copyToClipboard(text: string): Promise<boolean> {
-  let textarea: HTMLTextAreaElement | null = null;
-  try {
-    // DevTools context blocks Clipboard API, use execCommand
-    textarea = document.createElement("textarea");
-    textarea.value = text;
-    // Textarea could briefly appear on screen, prevent causing a visual flicker.
-    textarea.style.position = "absolute";
-    textarea.style.left = "-9999px";
-    document.body.appendChild(textarea);
-    textarea.select();
-    return document.execCommand("copy");
-  } catch (error) {
-    console.error("Clipboard operation failed:", error);
-    return false;
-  } finally {
-    if (textarea?.parentNode) {
-      textarea.parentNode.removeChild(textarea);
+      textarea = document.createElement("textarea");
+      textarea.value = text;
+      // Textarea could briefly appear on screen, prevent causing a visual flicker.
+      textarea.style.position = "absolute";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      return document.execCommand("copy");
+    } catch (error) {
+      console.error("Clipboard operation failed:", error);
+      return false;
+    } finally {
+      if (textarea?.parentNode) {
+        textarea.parentNode.removeChild(textarea);
+      }
     }
-  }
-}
   }
 
   protected setupEventListeners(): void {
