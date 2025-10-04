@@ -25,9 +25,10 @@ fs.mkdirSync(chromeDir, { recursive: true });
 fs.mkdirSync(safariDir, { recursive: true });
 
 // Copy compiled JS files for Chrome
-copyFile('dist/chrome/popup.js', path.join(chromeDir, 'popup.js'));
+copyFile('dist/shared/popup.js', path.join(chromeDir, 'popup.js'));
 copyFile('dist/chrome/background.js', path.join(chromeDir, 'background.js'));
 copyFile('dist/shared/query-lens.js', path.join(chromeDir, 'query-lens.js'));
+copyFile('dist/shared/popup-init.js', path.join(chromeDir, 'popup-init.js'));
 
 // Copy assets for Chrome
 copyFile('src/shared/popup.html', path.join(chromeDir, 'popup.html'));
@@ -39,9 +40,10 @@ copyFile('src/shared/icons/icon128.png', path.join(chromeDir, 'icon128.png'));
 copyFile('src/shared/manifest.json', path.join(chromeDir, 'manifest.json'));
 
 // Copy compiled JS files for Safari
-copyFile('dist/safari/popup.js', path.join(safariDir, 'popup.js'));
+copyFile('dist/shared/popup.js', path.join(safariDir, 'popup.js'));
 copyFile('dist/safari/background.js', path.join(safariDir, 'background.js'));
 copyFile('dist/shared/query-lens.js', path.join(safariDir, 'query-lens.js'));
+copyFile('dist/shared/popup-init.js', path.join(safariDir, 'popup-init.js'));
 
 // Copy assets for Safari
 copyFile('src/shared/popup.html', path.join(safariDir, 'popup.html'));
