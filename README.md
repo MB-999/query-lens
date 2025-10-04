@@ -13,6 +13,8 @@ The extension is privacy-focused - it only manipulates URL query strings locally
 ## Chrome (with DevTools)
 <img width="564" height="544" alt="image" src="https://github.com/user-attachments/assets/7e60a8d8-5c70-47d7-9c15-faac958c50b3" />
 <img width="572" height="537" alt="image" src="https://github.com/user-attachments/assets/131a60d4-b7f8-4640-b796-4570b436d894" />
+<img width="488" height="598" alt="image" src="https://github.com/user-attachments/assets/87fb9c26-c3d8-4147-9931-46b8fecfc54d" />
+
 
 ## Features
 
