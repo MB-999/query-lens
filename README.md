@@ -6,6 +6,7 @@ A browser extension to view and manipulate URL query parameters, available for C
 
 The extension is privacy-focused - it only manipulates URL query strings locally without any data collection.
 
+## Safari 
  <img width="814" height="521" alt="image" src="https://github.com/user-attachments/assets/51557f82-6d8a-40a7-b588-a7be8ac4fdca" /> 
  <img width="566" height="551" alt="image" src="https://github.com/user-attachments/assets/ae1ee217-e159-4637-ac57-31b0c8fee6f3" />
  
