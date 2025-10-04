@@ -7,13 +7,13 @@ A browser extension to view and manipulate URL query parameters, available for C
 The extension is privacy-focused - it only manipulates URL query strings locally without any data collection.
 
 ## Safari
+
  <img width="1058" height="480" alt="image" src="https://github.com/user-attachments/assets/69b52126-1ab7-4838-ac49-3915ac4fd914" />
 
 ## Chrome (with DevTools)
 
   <img width="477" height="554" alt="image" src="https://github.com/user-attachments/assets/3eb910a4-d716-4a03-90a0-9ac54c786b64" />
   <img width="589" height="432" alt="image" src="https://github.com/user-attachments/assets/58a2f104-a53d-4d85-8678-4fe225e93ae8" />
-
 
 ## Features
 
@@ -27,50 +27,81 @@ The extension is privacy-focused - it only manipulates URL query strings locally
 
 ```text
 query-lens/
-├── chrome-version/          # Chrome extension implementation
-│   ├── manifest.json        # Chrome extension manifest (v3)
-│   ├── popup.html           # Main popup interface
-│   ├── popup.js             # Chrome-specific popup logic
-│   ├── devtools.html/js     # DevTools entry point
-│   ├── devtools-panel.html/js # DevTools panel interface
-│   ├── background.js        # Service worker
-│   ├── query-lens.js        # Core logic
-│   ├── styles.css           # Main styling
-│   ├── devtools-styles.css  # DevTools styling
-│   └── icon*.png            # Extension icons
-├── safari-version/          # Safari extension implementation
-│   ├── manifest.json        # Safari extension manifest (v2)
-│   ├── popup.html           # Main popup interface
-│   ├── popup.js             # Safari-specific popup logic
-│   ├── background.js        # Background script
-│   ├── query-lens.js        # Core logic
-│   ├── styles.css           # Interface styling
-│   └── icon*.png            # Extension icons
+├── src/                     # TypeScript source code & assets
+│   ├── shared/              # Shared resources for both browsers
+│   │   ├── query-lens.ts    # Core QueryLens class
+│   │   ├── types.ts         # Type definitions
+│   │   ├── popup.html       # Popup interface
+│   │   ├── styles.css       # Main styling
+│   │   ├── manifest.json    # Manifest V3 (both browsers)
+│   │   ├── icons/           # Extension icons
+│   │   └── query-lens.test.ts # Unit tests
+│   ├── chrome/              # Chrome-specific code only
+│   │   ├── popup.ts         # Chrome initialization
+│   │   ├── background.ts    # Chrome service worker
+│   │   ├── devtools.ts      # DevTools entry point
+│   │   ├── devtools-panel.ts # DevTools panel logic
+│   │   ├── devtools.html    # DevTools entry
+│   │   ├── devtools-panel.html # DevTools panel interface
+│   │   └── devtools-styles.css # DevTools styling
+│   └── safari/              # Safari-specific code only
+│       ├── popup.ts         # Safari initialization
+│       └── background.ts    # Safari service worker
+├── dist/                    # TypeScript compilation & extension builds
+│   ├── chrome-extension/    # Chrome extension build (self-contained)
+│   └── safari-extension/    # Safari extension build (self-contained)
+├── tsconfig.json            # TypeScript configuration
+├── build.js                 # Build script
 └── README.md               # This file
 ```
 
 ## Development
 
-Each version contains its own README with specific development instructions:
+### Prerequisites
 
-- [Chrome Version README](chrome-version/README.md)
-- [Safari Version README](safari-version/README.md)
+- Node.js and pnpm
+- TypeScript
+
+### Setup
+
+```bash
+pnpm install
+```
+
+### Build
+
+```bash
+pnpm build        # Compile TypeScript and create dist builds
+pnpm build:ts     # Compile TypeScript only
+```
+
+### Testing
+
+```bash
+pnpm test             # Run tests
+pnpm test:watch       # Watch mode
+pnpm test:coverage    # Coverage report
+```
+
+The project now uses a unified TypeScript codebase with platform-specific builds generated automatically.
 
 ## Installation
 
 ### Chrome Version
 
-1. Open Chrome and navigate to `chrome://extensions/`
-2. Enable "Developer mode" in the top right
-3. Click "Load unpacked" and select the `chrome-version` directory
-4. The QueryLens icon will appear in your toolbar
+1. Build the project: `pnpm run build` (or use pre-built extension from /dist/chrome-extension)
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top right
+4. Click "Load unpacked" and select the `dist/chrome-extension` directory
+5. The QueryLens icon will appear in your toolbar
 
 ### Safari Version
 
-1. Open Safari and go to Safari > Preferences > Extensions
-2. Enable "Allow Unsigned Extensions" (for development)
-3. Click "Add Temporary Extension" and select the `safari-version` directory
-4. Enable the QueryLens extension
+1. Build the project: `pnpm run build` (or use pre-built extension from /dist/safari-extension)
+2. Open Safari and go to Safari > Preferences > Extensions
+3. Enable "Allow Unsigned Extensions" (for development)
+4. Click "Add Temporary Extension" and select the `dist/safari-extension` directory
+5. Enable the QueryLens extension
 
 ## Usage
 
@@ -83,17 +114,16 @@ Each version contains its own README with specific development instructions:
 ### Chrome-Specific Features
 
 - **DevTools Panel**: Access QueryLens directly from Chrome DevTools for seamless development workflow
-- **Advanced Drag & Drop**: Full drag-and-drop support for parameter reordering
 
 ## Browser Differences
 
-| Feature                | Chrome     | Safari      |
-| ---------------------- | ---------- | ----------- |
-| Popup Interface        | ✅         | ✅          |
-| DevTools Panel         | ✅         | ❌          |
-| Drag & Drop Reordering | ✅         | Limited     |
-| Manifest Version       | v3         | v2          |
-| API                    | `chrome.*` | `browser.*` |
+| Feature                | Chrome     | Safari     |
+| ---------------------- | ---------- | ---------- |
+| Popup Interface        | ✅         | ✅         |
+| DevTools Panel         | ✅         | ❌         |
+| Drag & Drop Reordering | ✅         | ✅         |
+| Manifest Version       | v3         | v3         |
+| API                    | `chrome.*` | `chrome.*` |
 
 ## Sponsor My Opensource Work
 

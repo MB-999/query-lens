@@ -1,0 +1,190 @@
+body {
+  width: 400px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  button {
+    background: #2d2d2d;
+    color: #ffffff;
+    border-color: #555;
+  }
+  
+  button:hover {
+    background: #3d3d3d;
+  }
+  
+  .url-display {
+    background: #2d2d2d;
+    border-color: #555;
+    color: #ffffff;
+  }
+  
+  .param-item {
+    border-color: #555;
+    background: #2d2d2d;
+  }
+  
+  .param-key, .param-value {
+    background: #1e1e1e;
+    color: #ffffff;
+    border-color: #555;
+  }
+}
+
+.container {
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+button:hover {
+  background: #f5f5f5;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.url-display {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 16px;
+  word-break: break-all;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.param-changed {
+  background: #fff3cd;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.params-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.params-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.param-item {
+  margin-bottom: 8px;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.param-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 450px) {
+  .param-row {
+    gap: 2px;
+  }
+  
+  .copy-btn, .remove-btn {
+    padding: 2px 6px;
+    font-size: 10px;
+    min-width: 50px;
+  }
+}
+
+.drag-handle {
+  cursor: grab;
+  color: #6c757d;
+  font-weight: bold;
+  user-select: none;
+}
+
+.param-key, .param-value {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.copy-btn, .remove-btn {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.remove-btn {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.remove-btn:hover {
+  background: #c82333;
+}
+
+.no-params {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
+}

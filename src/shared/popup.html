@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>QueryLens</h1>
+      <div class="buttons">
+        <button id="reset-btn" class="btn" title="Reset to original URL">Reset</button>
+        <button id="copy-url-btn" class="btn" title="Copy modified URL">Copy URL</button>
+        <button id="apply-changes-btn" class="btn" title="Navigate to modified URL" disabled>Apply Changes</button>
+      </div>
+    </div>
+    
+    <div class="url-display">
+      <div id="dynamic-url"></div>
+    </div>
+    
+    <div class="params-section">
+      <div class="params-header">
+        <h2>Query Parameters</h2>
+        <button id="add-param-btn" class="btn">Add Parameter</button>
+      </div>
+      
+      <div id="no-params" class="no-params hidden">
+        No query parameters found
+      </div>
+      
+      <div id="params-list" class="params-list"></div>
+    </div>
+  </div>
+  
+  <script src="query-lens.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

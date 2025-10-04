@@ -3,3 +3,10 @@
 
 # Dependencies
 node_modules/
+
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# Coverage
+coverage/
