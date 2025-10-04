@@ -1,13 +1,14 @@
+// Duplicated from types.ts - ES imports not supported in extension context without bundling
 interface BrowserAPI {
   tabs: {
     query(queryInfo: {
       active: boolean;
       currentWindow: boolean;
     }): Promise<Array<{ id?: number; url?: string }>>;
-    update(tabId: number, updateProperties: { url: string }): Promise<any>;
+    update(tabId: number, updateProperties: { url: string }): Promise<void>;
   };
 }
-
+// Duplicated from types.ts - ES imports not supported in extension context without bundling
 interface QueryLensOptions {
   autoInit?: boolean;
 }
