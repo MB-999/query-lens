@@ -119,17 +119,15 @@ class QueryLens {
         });
         (_b = document
             .getElementById("copy-url-btn")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", async () => {
-            if (!navigator.clipboard) {
-                this.showToast("Clipboard not available", "error");
-                return;
-            }
-            try {
-                await navigator.clipboard.writeText(this.buildUrl());
+            const success = await this.copyToClipboard(this.buildUrl());
+            if (success) {
                 this.showToast("URL copied to clipboard!");
             }
-            catch (error) {
-                console.error("Clipboard operation failed:", error);
+            else if (navigator.clipboard) {
                 this.showToast("Failed to copy URL", "error");
+            }
+            else {
+                this.showToast("Clipboard not available", "error");
             }
         });
         (_c = document
@@ -256,17 +254,15 @@ class QueryLens {
             const inputs = (_a = target
                 .closest(".param-row")) === null || _a === void 0 ? void 0 : _a.querySelectorAll(".param-input");
             const value = (_c = (_b = inputs[1]) === null || _b === void 0 ? void 0 : _b.value) !== null && _c !== void 0 ? _c : "";
-            if (!navigator.clipboard) {
-                this.showToast("Clipboard not available", "error");
-                return;
-            }
-            try {
-                await navigator.clipboard.writeText(value);
+            const success = await this.copyToClipboard(value);
+            if (success) {
                 this.showToast("Value copied!");
             }
-            catch (error) {
-                console.error("Clipboard operation failed:", error);
+            else if (navigator.clipboard) {
                 this.showToast("Failed to copy value", "error");
+            }
+            else {
+                this.showToast("Clipboard not available", "error");
             }
         });
         removeBtn.addEventListener("click", (e) => {
@@ -326,11 +322,28 @@ class QueryLens {
         toast.setAttribute("aria-live", "polite");
         toast.textContent = message;
         document.body.appendChild(toast);
-        setTimeout(() => toast.classList.add("show"), 10);
-        setTimeout(() => {
+        const showTimer = setTimeout(() => toast.classList.add("show"), 10);
+        const hideTimer = setTimeout(() => {
             toast.classList.remove("show");
-            setTimeout(() => toast.remove(), 200);
+            setTimeout(() => {
+                clearTimeout(showTimer);
+                clearTimeout(hideTimer);
+                toast.remove();
+            }, 200);
         }, 1500);
+    }
+    async copyToClipboard(text) {
+        if (!navigator.clipboard) {
+            return false;
+        }
+        try {
+            await navigator.clipboard.writeText(text);
+            return true;
+        }
+        catch (error) {
+            console.error("Clipboard operation failed:", error);
+            return false;
+        }
     }
     async applyChanges() {
         var _a;

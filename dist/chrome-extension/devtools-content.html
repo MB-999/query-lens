@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none';">
+  <title>QueryLens DevTools</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="browser-styles.css">
+</head>
+<body>
+  <main class="container devtools-container">
+    <header class="header">
+      <h1>QueryLens</h1>
+      <div class="buttons">
+        <button id="reset-btn" class="btn">Reset</button>
+        <button id="copy-url-btn" class="btn">Copy URL</button>
+        <button id="apply-changes-btn" class="btn" disabled>Apply Changes</button>
+      </div>
+    </header>
+    
+    <section class="url-display">
+      <div id="dynamic-url"></div>
+    </section>
+    
+    <section class="params-section">
+      <div class="params-header">
+        <h2>Query Parameters</h2>
+        <button id="add-param-btn" class="btn">Add Parameter</button>
+      </div>
+      
+      <div id="no-params" class="no-params hidden">
+        No query parameters found
+      </div>
+      
+      <div id="params-list" class="params-list" role="list"></div>
+    </section>
+
+  </main>
+
+  <script src="query-lens.js"></script>
+  <script src="devtools-content.js"></script>
+</body>
+</html>

@@ -22,11 +22,23 @@ function copyForBrowser(targetDir, browser) {
     ['dist/shared/popup-init.js', 'popup-init.js'],
     ['src/shared/popup.html', 'popup.html'],
     ['src/shared/styles.css', 'styles.css'],
+    ...(browser === 'safari' ? [['src/safari/styles.css', 'browser-styles.css']] : []),
     ['src/shared/icons/icon16.png', 'icon16.png'],
     ['src/shared/icons/icon48.png', 'icon48.png'],
     ['src/shared/icons/icon128.png', 'icon128.png'],
-    ['src/shared/manifest.json', 'manifest.json']
+    [`src/${browser}/manifest.json`, 'manifest.json']
   ];
+  
+  // Add Chrome-specific DevTools files
+  if (browser === 'chrome') {
+    mappings.push(
+      [`dist/${browser}/devtools.js`, 'devtools.js'],
+      [`dist/${browser}/devtools-content.js`, 'devtools-content.js'],
+      [`src/${browser}/devtools.html`, 'devtools.html'],
+      [`src/${browser}/devtools-content.html`, 'devtools-content.html']
+    );
+  }
+  
   mappings.forEach(([src, dest]) => copyFile(src, path.join(targetDir, dest)));
 }
 

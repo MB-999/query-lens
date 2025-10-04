@@ -39,9 +39,9 @@ query-lens/
 │   │   ├── popup.ts         # Chrome initialization
 │   │   ├── background.ts    # Chrome service worker
 │   │   ├── devtools.ts      # DevTools entry point
-│   │   ├── devtools-panel.ts # DevTools panel logic
+│   │   ├── devtools-content.ts # DevTools panel logic
 │   │   ├── devtools.html    # DevTools entry
-│   │   ├── devtools-panel.html # DevTools panel interface
+│   │   ├── devtools-content.html # DevTools panel interface
 │   │   └── devtools-styles.css # DevTools styling
 │   └── safari/              # Safari-specific code only
 │       ├── popup.ts         # Safari initialization
