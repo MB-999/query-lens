@@ -241,3 +241,73 @@ body {
 .toast.show {
   transform: translateY(0);
 }
+
+/* DevTools Panel Overrides */
+.devtools-container {
+  padding: 8px;
+  height: 100vh;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.devtools-container .header {
+  margin-bottom: 8px;
+}
+
+.devtools-container .header h1 {
+  font-size: 14px;
+}
+
+.devtools-container .url-display {
+  font-size: 10px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  max-height: 60px;
+  overflow-y: auto;
+}
+
+.devtools-container .params-header h2 {
+  font-size: 13px;
+}
+
+.devtools-container .param-item {
+  margin-bottom: 4px;
+  padding: 4px;
+}
+
+.devtools-container .param-row {
+  gap: 3px;
+}
+
+.devtools-container .param-input {
+  min-width: 70px;
+  padding: 2px 4px;
+  font-size: 11px;
+  height: 20px;
+}
+
+.devtools-container .drag-handle {
+  font-size: 10px;
+  padding: 2px;
+  width: 14px;
+  text-align: center;
+}
+
+.devtools-container .btn {
+  padding: 2px 6px;
+  font-size: 10px;
+  height: 20px;
+}
+
+.devtools-container .btn-copy {
+  min-width: 35px;
+}
+
+.devtools-container .btn-remove {
+  min-width: 40px;
+}
+
+.devtools-container .no-params {
+  padding: 12px;
+  font-size: 11px;
+}
