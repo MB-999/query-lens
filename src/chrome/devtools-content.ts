@@ -147,6 +147,7 @@ class DevToolsQueryLens extends QueryLens {
           this.showToast("Failed to apply changes", "error");
         } else {
           this.originalUrl = newUrl;
+          this.currentUrl = newUrl;
           this.showToast("Changes applied!");
           (
             document.getElementById("apply-changes-btn") as HTMLButtonElement
