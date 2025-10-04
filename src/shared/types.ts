@@ -4,7 +4,7 @@ export interface BrowserAPI {
       active: boolean;
       currentWindow: boolean;
     }): Promise<Array<{ id?: number; url?: string }>>;
-    update(tabId: number, updateProperties: { url: string }): Promise<any>;
+    update(tabId: number, updateProperties: { url: string }): Promise<void>;
   };
 }
 

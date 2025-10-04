@@ -5,7 +5,7 @@ function copyFile(src, dest) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.copyFileSync(src, dest);
 }
-
+try {
 // Clean and create dist directories for extensions
 const chromeDir = 'dist/chrome-extension';
 const safariDir = 'dist/safari-extension';
@@ -52,3 +52,7 @@ if (fs.existsSync('dist/shared')) fs.rmSync('dist/shared', { recursive: true });
 console.log('Build completed successfully!');
 console.log('Chrome extension: dist/chrome-extension/');
 console.log('Safari extension: dist/safari-extension/');
+} catch (error) {
+  console.error('Build failed:', error.message);
+  process.exit(1);
+}

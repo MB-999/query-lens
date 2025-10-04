@@ -127,28 +127,20 @@ button:disabled {
   flex-wrap: wrap;
 }
 
-.copy-btn, .remove-btn {
-  padding: 3px 6px;
-  font-size: 10px;
-  min-width: 45px;
-  flex-shrink: 0;
-}
-
-.param-key, .param-value {
-  min-width: 80px;
-}
-
 .param-key, .param-value {
   flex: 1;
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 12px;
+  min-width: 80px;
 }
 
 .copy-btn, .remove-btn {
   padding: 4px 8px;
   font-size: 11px;
+  min-width: 45px;
+  flex-shrink: 0;
 }
 
 .remove-btn {

@@ -44,10 +44,28 @@ class QueryLens {
       active: true,
       currentWindow: true,
     });
-    this.originalUrl = tabs[0]?.url ?? "";
-    this.currentUrl = tabs[0]?.url ?? "";
-    this.params = new URLSearchParams(new URL(this.currentUrl).search);
-    this.updateDynamicUrl();
+    const tabUrl = tabs[0]?.url ?? "";
+    let validUrl = "";
+    if (
+      typeof tabUrl === "string" &&
+      tabUrl.trim() !== "" &&
+      tabUrl.startsWith("http")
+    ) {
+      try {
+        new URL(tabUrl);
+        validUrl = tabUrl;
+      } catch {}
+    }
+    if (validUrl) {
+      this.originalUrl = validUrl;
+      this.currentUrl = validUrl;
+      this.params = new URLSearchParams(new URL(this.currentUrl).search);
+      this.updateDynamicUrl();
+    } else {
+      this.originalUrl = "";
+      this.currentUrl = "";
+      this.params = new URLSearchParams();
+    }
   }
 
   protected updateDynamicUrl(): void {
@@ -227,6 +245,7 @@ class QueryLens {
   protected createParamElement(key: string, value: string): HTMLElement {
     const div = document.createElement("div");
     div.className = "param-item";
+    div.setAttribute("role", "listitem");
 
     if (typeof chrome !== "undefined") {
       div.draggable = true;
@@ -238,7 +257,7 @@ class QueryLens {
     if (typeof chrome !== "undefined") {
       const dragHandle = document.createElement("div");
       dragHandle.className = "drag-handle";
-      dragHandle.title = "Drag to reorder";
+      dragHandle.setAttribute("aria-label", "Drag to reorder parameter");
       dragHandle.textContent = "::";
       paramRow.appendChild(dragHandle);
     }
@@ -248,21 +267,23 @@ class QueryLens {
     keyInput.className = "param-input";
     keyInput.value = key;
     keyInput.placeholder = "Key";
+    keyInput.setAttribute("aria-label", "Parameter key");
 
     const valueInput = document.createElement("input");
     valueInput.type = "text";
     valueInput.className = "param-input";
     valueInput.value = value;
     valueInput.placeholder = "Value";
+    valueInput.setAttribute("aria-label", "Parameter value");
 
     const copyBtn = document.createElement("button");
     copyBtn.className = "btn-copy";
-    copyBtn.title = "Copy value";
+    copyBtn.setAttribute("aria-label", "Copy parameter value to clipboard");
     copyBtn.textContent = "Copy";
 
     const removeBtn = document.createElement("button");
     removeBtn.className = "btn-remove";
-    removeBtn.title = "Remove parameter";
+    removeBtn.setAttribute("aria-label", "Remove this parameter");
     removeBtn.textContent = "Delete";
 
     paramRow.appendChild(keyInput);
@@ -351,7 +372,7 @@ class QueryLens {
       const key = inputs[0]?.value ?? "";
       const value = inputs[1]?.value ?? "";
       const trimmedKey = key.trim();
-      if (trimmedKey !== "") entries.push([key, value]);
+      if (trimmedKey !== "") entries.push([trimmedKey, value]);
     });
     this.params = new URLSearchParams(entries);
   }
@@ -359,6 +380,8 @@ class QueryLens {
   protected showToast(message: string): void {
     const toast = document.createElement("div");
     toast.className = "toast";
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
     toast.textContent = message;
     document.body.appendChild(toast);
 
