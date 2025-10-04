@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * Copy a file from a source path to a destination path, creating parent directories if required.
+ * @param {string} src - The source file path.
+ * @param {string} dest - The destination file path; parent directories will be created if they do not exist.
+ */
 function copyFile(src, dest) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.copyFileSync(src, dest);
