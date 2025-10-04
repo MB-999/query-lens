@@ -1,19 +1,6 @@
-// Initialization for Chrome and Safari browsers
 document.addEventListener("DOMContentLoaded", () => {
   try {
-    if (typeof chrome === "undefined" || !chrome.tabs) {
-      throw new Error("Browser API not available");
-    }
-
-    const windowWithQueryLens = window as typeof window & {
-      QueryLens?: new (browserAPI: any) => any;
-    };
-
-    if (!windowWithQueryLens.QueryLens) {
-      throw new Error("QueryLens class not found");
-    }
-
-    new windowWithQueryLens.QueryLens(chrome);
+    (window as any).initializeQueryLens(chrome);
   } catch (error) {
     console.error("Failed to initialize QueryLens:", error);
     const errorDiv = document.createElement("div");
