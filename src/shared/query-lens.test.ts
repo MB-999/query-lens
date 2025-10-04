@@ -491,7 +491,7 @@ describe("QueryLens", () => {
       const queryLensWithAutoInit = new QueryLens(mockChrome);
 
       await new Promise((resolve) => setTimeout(resolve, 100));
-      expect(console.error).toHaveBeenCalled();
+      expect(console.error).not.toHaveBeenCalled();
     });
 
     it("should handle empty tab array", async () => {
@@ -500,7 +500,7 @@ describe("QueryLens", () => {
       const queryLensWithAutoInit = new QueryLens(mockChrome);
 
       await new Promise((resolve) => setTimeout(resolve, 100));
-      expect(console.error).toHaveBeenCalled();
+      expect(console.error).not.toHaveBeenCalled();
     });
 
     it("should handle missing tab ID during apply changes", async () => {

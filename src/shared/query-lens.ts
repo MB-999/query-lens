@@ -69,11 +69,16 @@ class QueryLens {
   }
 
   protected updateDynamicUrl(): void {
-    const dynamicUrl = this.buildUrl();
-    const url = new URL(dynamicUrl);
     const dynamicUrlDiv = document.getElementById("dynamic-url");
-
     if (!dynamicUrlDiv) return;
+
+    const dynamicUrl = this.buildUrl();
+    if (!dynamicUrl) {
+      dynamicUrlDiv.textContent = "";
+      return;
+    }
+
+    const url = new URL(dynamicUrl);
 
     if (!url.search) {
       dynamicUrlDiv.textContent = dynamicUrl;
@@ -134,7 +139,7 @@ class QueryLens {
   protected setupEventListeners(): void {
     document.getElementById("reset-btn")?.addEventListener("click", () => {
       this.currentUrl = this.originalUrl;
-      this.params = new URLSearchParams(new URL(this.currentUrl).search);
+      this.params = this.currentUrl ? new URLSearchParams(new URL(this.currentUrl).search) : new URLSearchParams();
       this.renderParams();
       this.updateDynamicUrl();
       (
@@ -408,6 +413,9 @@ class QueryLens {
   }
 
   buildUrl(): string {
+    if (!this.currentUrl) {
+      return "";
+    }
     const url = new URL(this.currentUrl);
     const entries: [string, string][] = [];
 
