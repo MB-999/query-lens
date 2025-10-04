@@ -7,13 +7,12 @@ A browser extension to view and manipulate URL query parameters, available for C
 The extension is privacy-focused - it only manipulates URL query strings locally without any data collection.
 
 ## Safari
- <img width="1058" height="480" alt="image" src="https://github.com/user-attachments/assets/69b52126-1ab7-4838-ac49-3915ac4fd914" />
+ <img width="814" height="521" alt="image" src="https://github.com/user-attachments/assets/51557f82-6d8a-40a7-b588-a7be8ac4fdca" /> <img width="566" height="551" alt="image" src="https://github.com/user-attachments/assets/ae1ee217-e159-4637-ac57-31b0c8fee6f3" />
+
 
 ## Chrome (with DevTools)
-
-  <img width="477" height="554" alt="image" src="https://github.com/user-attachments/assets/3eb910a4-d716-4a03-90a0-9ac54c786b64" />
-  <img width="589" height="432" alt="image" src="https://github.com/user-attachments/assets/58a2f104-a53d-4d85-8678-4fe225e93ae8" />
-
+<img width="564" height="544" alt="image" src="https://github.com/user-attachments/assets/7e60a8d8-5c70-47d7-9c15-faac958c50b3" />
+<img width="572" height="537" alt="image" src="https://github.com/user-attachments/assets/131a60d4-b7f8-4640-b796-4570b436d894" />
 
 ## Features
 
