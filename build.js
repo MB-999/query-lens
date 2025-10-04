@@ -14,6 +14,22 @@ const path = require('path');
    fs.copyFileSync(src, dest);
  }
 try {
+function copyForBrowser(targetDir, browser) {
+  const mappings = [
+    ['dist/shared/popup.js', 'popup.js'],
+    [`dist/${browser}/background.js`, 'background.js'],
+    ['dist/shared/query-lens.js', 'query-lens.js'],
+    ['dist/shared/popup-init.js', 'popup-init.js'],
+    ['src/shared/popup.html', 'popup.html'],
+    ['src/shared/styles.css', 'styles.css'],
+    ['src/shared/icons/icon16.png', 'icon16.png'],
+    ['src/shared/icons/icon48.png', 'icon48.png'],
+    ['src/shared/icons/icon128.png', 'icon128.png'],
+    ['src/shared/manifest.json', 'manifest.json']
+  ];
+  mappings.forEach(([src, dest]) => copyFile(src, path.join(targetDir, dest)));
+}
+
 // Clean and create dist directories for extensions
 const chromeDir = 'dist/chrome-extension';
 const safariDir = 'dist/safari-extension';
@@ -24,35 +40,16 @@ if (fs.existsSync(safariDir)) fs.rmSync(safariDir, { recursive: true });
 fs.mkdirSync(chromeDir, { recursive: true });
 fs.mkdirSync(safariDir, { recursive: true });
 
-// Copy compiled JS files for Chrome
-copyFile('dist/shared/popup.js', path.join(chromeDir, 'popup.js'));
-copyFile('dist/chrome/background.js', path.join(chromeDir, 'background.js'));
-copyFile('dist/shared/query-lens.js', path.join(chromeDir, 'query-lens.js'));
-copyFile('dist/shared/popup-init.js', path.join(chromeDir, 'popup-init.js'));
+// Verify TypeScript outputs exist
+const requiredDirs = ['dist/chrome', 'dist/safari', 'dist/shared'];
+for (const dir of requiredDirs) {
+  if (!fs.existsSync(dir)) {
+    throw new Error(`TypeScript compilation output not found: ${dir}. Run 'npm run build:ts' first.`);
+  }
+}
 
-// Copy assets for Chrome
-copyFile('src/shared/popup.html', path.join(chromeDir, 'popup.html'));
-copyFile('src/shared/styles.css', path.join(chromeDir, 'styles.css'));
-copyFile('src/shared/icons/icon16.png', path.join(chromeDir, 'icon16.png'));
-copyFile('src/shared/icons/icon48.png', path.join(chromeDir, 'icon48.png'));
-copyFile('src/shared/icons/icon128.png', path.join(chromeDir, 'icon128.png'));
-
-copyFile('src/shared/manifest.json', path.join(chromeDir, 'manifest.json'));
-
-// Copy compiled JS files for Safari
-copyFile('dist/shared/popup.js', path.join(safariDir, 'popup.js'));
-copyFile('dist/safari/background.js', path.join(safariDir, 'background.js'));
-copyFile('dist/shared/query-lens.js', path.join(safariDir, 'query-lens.js'));
-copyFile('dist/shared/popup-init.js', path.join(safariDir, 'popup-init.js'));
-
-// Copy assets for Safari
-copyFile('src/shared/popup.html', path.join(safariDir, 'popup.html'));
-copyFile('src/shared/styles.css', path.join(safariDir, 'styles.css'));
-copyFile('src/shared/icons/icon16.png', path.join(safariDir, 'icon16.png'));
-copyFile('src/shared/icons/icon48.png', path.join(safariDir, 'icon48.png'));
-copyFile('src/shared/icons/icon128.png', path.join(safariDir, 'icon128.png'));
-
-copyFile('src/shared/manifest.json', path.join(safariDir, 'manifest.json'));
+copyForBrowser(chromeDir, 'chrome');
+copyForBrowser(safariDir, 'safari');
 
 // Clean up TypeScript compilation artifacts
 if (fs.existsSync('dist/chrome')) fs.rmSync('dist/chrome', { recursive: true });
