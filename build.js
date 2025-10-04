@@ -6,10 +6,13 @@ const path = require('path');
  * @param {string} src - The source file path.
  * @param {string} dest - The destination file path; parent directories will be created if they do not exist.
  */
-function copyFile(src, dest) {
-  fs.mkdirSync(path.dirname(dest), { recursive: true });
-  fs.copyFileSync(src, dest);
-}
+ function copyFile(src, dest) {
+  if (!fs.existsSync(src)) {
+    throw new Error(`Source file not found: ${src}`);
+  }
+   fs.mkdirSync(path.dirname(dest), { recursive: true });
+   fs.copyFileSync(src, dest);
+ }
 try {
 // Clean and create dist directories for extensions
 const chromeDir = 'dist/chrome-extension';
